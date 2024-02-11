@@ -1,8 +1,10 @@
 class Operation
     def initialize(operator)
+        # Expects a text operator, like '+'
         @operator = operator
     end
     def operate(lhs, rhs)
+        # Applies a text operator as a method
         lhs.public_send @operator, rhs
     end
 end
@@ -24,12 +26,12 @@ end
 
 def askUserToCalculate
   print "What's the first number? "
-  userLhs = gets.to_f
+  lhs = gets.to_f
   print "What's the operator? "
-  userOperator = gets.chomp
+  operation = getOperationFor(gets.chomp)
   print "What's the second number? "
-  userRhs = gets.to_f
-  result = getOperationFor(userOperator).operate userLhs, userRhs
+  rhs = gets.to_f
+  result = operation.operate lhs, rhs
   puts "The result is #{sprintf '%g', result}!"
 end
 
